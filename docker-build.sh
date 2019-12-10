@@ -1,4 +1,7 @@
-
 #!/usr/bin/env bash
-docker-compose build
-bash docker-start.sh
+
+#get name of the current directory
+NAME=$(basename "$PWD")
+
+#build the docker
+docker build -t $NAME .

@@ -2,15 +2,9 @@
 FROM node:10.15.3
 
 #aws cli install
-RUN apk -v --update add \
-        python \
-        py-pip \
-        groff \
-        less \
-        mailcap \
-        && \
-    pip install --upgrade awscli==1.14.5 s3cmd==2.0.1 python-magic && \
-    apk -v --purge del py-pip && \
-    rm /var/cache/apk/*
+RUN apt-get update \
+	&& apt-get install -y python-pip curl\
+	&& pip install awscli \
+    && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["sh", "-c", "ls"]
